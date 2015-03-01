@@ -1,13 +1,19 @@
 def gc_count():
 	"""Basic GC Count function """
-	filename = raw_input("Please enter the path to the txt file: ")
-	file = open(filename, "r")
 	a = 0
 	t = 0
 	g = 0
 	c = 0
 
-	dna = file.read()
+	type = raw_input("Please enter the data entry type (1=txt file, 2=direct entry): ")
+
+	if type == "1":
+		filename = raw_input("Please enter the path to the txt file: ")
+		file = open(filename, "r")
+		dna = file.read()
+	else:
+		dna = raw_input("Please enter the DNA string: ")	
+
 	dna = list(dna)
 
 	for i in range(len(dna)):
@@ -22,7 +28,8 @@ def gc_count():
 		else:
 			print "Invalid character, %s" % (dna[i])
 
-	file.close()
+	if type == "1":
+		file.close()
 
 	print "A: %s, T: %s, G: %s, C: %s" % (a, t, g, c)
 	return a, t, g, c
